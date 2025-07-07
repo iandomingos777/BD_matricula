@@ -6,6 +6,7 @@ import model.entities.Campus;
 
 public interface CampusDao {
     void insert(Campus obj) throws SQLException;
+    void massInsert(List<Campus> campi) throws SQLException;
     void update(Campus obj) throws SQLException;
     void deleteById(Integer id) throws SQLException;
     Campus findById(Integer id) throws SQLException;
