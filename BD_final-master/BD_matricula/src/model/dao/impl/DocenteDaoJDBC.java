@@ -41,6 +41,13 @@ public class DocenteDaoJDBC implements DocenteDao {
     }
 
     @Override
+    public void massInsert(List<Docente> docentes) throws SQLException {
+        for (Docente docente : docentes){
+            insert(docente);
+        }
+    }
+
+    @Override
     public void update(Docente obj) throws SQLException {
         String sql = "UPDATE docente SET nome = ?, formacao = ?, telefone = ?, area = ?, lattes = ? WHERE id = ?";
 
