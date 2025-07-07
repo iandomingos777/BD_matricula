@@ -7,6 +7,7 @@ import model.entities.Cadeira_aluno;
 
 public interface CadeiraAlunoDao {
     void insert(Cadeira_aluno obj) throws SQLException;
+    void massInsert(List<Cadeira_aluno> cadeiras) throws SQLException;
     void update(Cadeira_aluno obj) throws SQLException;
     void deleteById(int id) throws SQLException;
     Cadeira_aluno findById(int id) throws SQLException;
