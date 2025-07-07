@@ -25,6 +25,7 @@ public class AlunoDaoJDBC implements AlunoDao {
             st.setInt(2, obj.getIdade());
             st.setInt(3, obj.getSemestre());
             st.setInt(4, 0);
+            st.setInt(4, obj.getN_disciplinas());
             st.setString(5, obj.getSem_inicial());
             st.setString(6, obj.getPrev_termino());
 

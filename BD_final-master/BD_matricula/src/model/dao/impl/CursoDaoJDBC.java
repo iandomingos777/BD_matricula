@@ -53,6 +53,8 @@ public class CursoDaoJDBC implements CursoDao {
             st.setString(2, obj.getCentro());
             st.setInt(3, 0);
             st.setInt(4, 0);
+            st.setInt(3, obj.getN_disciplinas());
+            st.setInt(4, obj.getN_alunos());
             st.setBoolean(5, obj.isEad());
             st.setInt(6, obj.getId_campus());
             st.setInt(7, obj.getId_coordenador());
@@ -101,7 +103,7 @@ public class CursoDaoJDBC implements CursoDao {
             return list;
         }
     }
-
+  
     @Override
     public List<Curso> findBySubstring(String sub) throws SQLException {
         String sql = "SELECT * FROM curso WHERE nome ILIKE '%"+ sub +"%' ORDER BY nome";
