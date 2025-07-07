@@ -6,6 +6,7 @@ import model.entities.Aluno;
 
 public interface AlunoDao {
     void insert(Aluno aluno) throws SQLException;
+    void massInsert(List<Aluno> alunos) throws SQLException;
     void update(Aluno aluno) throws SQLException;
     void deleteById(int matricula) throws SQLException;
     Aluno findById(int matricula) throws SQLException;
