@@ -44,6 +44,13 @@ public class CursoDaoJDBC implements CursoDao {
     }
 
     @Override
+    public void massInsert(List<Curso> cursos) throws SQLException{
+        for (Curso curso : cursos){
+            insert(curso);
+        }
+    }
+
+    @Override
     public void update(Curso obj) throws SQLException {
         String sql = "UPDATE curso SET nome = ?, centro = ?, n_disciplinas = ?, n_alunos = ?, ead = ?, id_campus = ?, id_coordenador = ? " +
                      "WHERE id = ?";
