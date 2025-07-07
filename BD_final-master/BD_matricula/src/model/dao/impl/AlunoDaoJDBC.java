@@ -44,6 +44,13 @@ public class AlunoDaoJDBC implements AlunoDao {
     }
 
     @Override
+    public void massInsert(List<Aluno> alunos) throws SQLException {
+        for (Aluno aluno : alunos){
+            insert(aluno);
+        }
+    }
+
+    @Override
     public void update(Aluno obj) throws SQLException {
         String sql = "UPDATE aluno SET nome = ?, idade = ?, semestre = ?, n_disciplinas = ?, sem_inicial = ?, prev_termino = ? " +
                      "WHERE matricula = ?";
