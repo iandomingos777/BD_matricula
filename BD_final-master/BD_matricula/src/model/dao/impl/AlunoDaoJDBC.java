@@ -135,4 +135,22 @@ public class AlunoDaoJDBC implements AlunoDao {
 
         return new Aluno(matricula, nome, idade, semestre, n_disciplinas, sem_inicial, prev_termino);
     }
+
+    @Override
+    public int somarHorasTotais(int mat) throws SQLException {
+        String sql = "SELECT SUM(horas) FROM (" +
+                "SELECT horas, matricula FROM Aluno " +
+                "INNER JOIN Cadeira_aluno ON Aluno.matricula = Cadeira_aluno.mat_aluno " +
+                "INNER JOIN Disciplina ON Cadeira_aluno.id_disciplina = Disciplina.id" +
+                ") WHERE matricula= ? ";
+        try (PreparedStatement st = conn.prepareStatement(sql)) {
+            st.setInt(1, mat);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0;
+            }
+        }
+    }
 }
