@@ -35,6 +35,13 @@ public class CampusDaoJDBC implements CampusDao {
     }
 
     @Override
+    public void massInsert(List<Campus> campi) throws SQLException {
+        for (Campus campus : campi){
+            insert(campus);
+        }
+    }
+
+    @Override
     public void update(Campus obj) throws SQLException {
         String sql = "UPDATE campus SET nome = ?, endereco = ?, ano_criacao = ?, site = ? WHERE id = ?";
         try (PreparedStatement st = conn.prepareStatement(sql)) {
