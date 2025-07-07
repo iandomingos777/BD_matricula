@@ -41,6 +41,13 @@ public class DisciplinaDaoJDBC implements DisciplinaDao {
     }
 
     @Override
+    public void massInsert(List<Disciplina> disciplinas) throws SQLException {
+        for (Disciplina disciplina : disciplinas){
+            insert(disciplina);
+        }
+    }
+
+    @Override
     public void update(Disciplina obj) throws SQLException {
         String sql = "UPDATE disciplina SET nome = ?, horas = ?, requisito = ?, eletiva = ?, id_curso = ? WHERE id = ?";
 
@@ -120,5 +127,23 @@ public class DisciplinaDaoJDBC implements DisciplinaDao {
         int id_curso = rs.getInt("id_curso");
 
         return new Disciplina(id, nome, horas, requisito, eletiva, id_curso);
+    }
+
+    @Override
+    public float mediaDisciplina(int id) throws SQLException {
+        String sql = "SELECT AVG(nota1) AS avg1, AVG(nota2) AS avg2, AVG(nota3) AS avg3, AVG(nota4) as AVG4 \n" +
+                "FROM (SELECT * FROM Cadeira_aluno RIGHT JOIN Disciplina ON\n" +
+                "Cadeira_aluno.id_disciplina = Disciplina.id AND Disciplina.id = ? \n" +
+                ")";
+        try (PreparedStatement st = conn.prepareStatement(sql)) {
+            st.setInt(1, id);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    return (rs.getFloat(1) + rs.getFloat(2) + rs.getFloat(3) + rs.getFloat(4))/4;
+                }
+                return 0;
+            }
+        }
+
     }
 }
