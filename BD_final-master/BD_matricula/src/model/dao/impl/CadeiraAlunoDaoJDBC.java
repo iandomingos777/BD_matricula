@@ -46,6 +46,13 @@ public class CadeiraAlunoDaoJDBC implements CadeiraAlunoDao {
     }
 
     @Override
+    public void massInsert(List<Campus> campi) throws SQLException {
+        for (Campus campus : campi){
+            insert(campus);
+        }
+    }
+
+    @Override
     public void update(Cadeira_aluno obj) throws SQLException {
         String sql = "UPDATE cadeira_aluno SET horario = ?, sala = ?, nota1 = ?, nota2 = ?, nota3 = ?, nota4 = ?, mat_aluno = ?, id_professor = ?, id_disciplina = ? WHERE id = ?";
 
