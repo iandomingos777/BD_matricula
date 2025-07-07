@@ -10,4 +10,5 @@ public interface CampusDao {
     void deleteById(Integer id) throws SQLException;
     Campus findById(Integer id) throws SQLException;
     List<Campus> findAll() throws SQLException;
+    List<Campus> findBySubstring(String sub) throws SQLException;
 }

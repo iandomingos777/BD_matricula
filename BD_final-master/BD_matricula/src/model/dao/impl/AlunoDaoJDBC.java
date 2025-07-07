@@ -24,6 +24,7 @@ public class AlunoDaoJDBC implements AlunoDao {
             st.setString(1, obj.getNome());
             st.setInt(2, obj.getIdade());
             st.setInt(3, obj.getSemestre());
+            st.setInt(4, 0);
             st.setInt(4, obj.getN_disciplinas());
             st.setString(5, obj.getSem_inicial());
             st.setString(6, obj.getPrev_termino());
@@ -89,6 +90,21 @@ public class AlunoDaoJDBC implements AlunoDao {
     @Override
     public List<Aluno> findAll() throws SQLException {
         String sql = "SELECT * FROM aluno ORDER BY nome";
+
+        try (PreparedStatement st = conn.prepareStatement(sql);
+             ResultSet rs = st.executeQuery()) {
+
+            List<Aluno> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(instantiateAluno(rs));
+            }
+            return list;
+        }
+    }
+
+    @Override
+    public List<Aluno> findBySubstring(String sub) throws SQLException {
+        String sql = "SELECT * FROM aluno WHERE nome ILIKE '%"+ sub +"%' ORDER BY nome";
 
         try (PreparedStatement st = conn.prepareStatement(sql);
              ResultSet rs = st.executeQuery()) {

@@ -97,6 +97,21 @@ public class DocenteDaoJDBC implements DocenteDao {
         }
     }
 
+    @Override
+    public List<Docente> findBySubstring(String sub) throws SQLException {
+        String sql = "SELECT * FROM docente WHERE nome ILIKE '%"+ sub +"%' ORDER BY nome";
+
+        try (PreparedStatement st = conn.prepareStatement(sql);
+             ResultSet rs = st.executeQuery()) {
+
+            List<Docente> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(instantiateDocente(rs));
+            }
+            return list;
+        }
+    }
+
     private Docente instantiateDocente(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String nome = rs.getString("nome");

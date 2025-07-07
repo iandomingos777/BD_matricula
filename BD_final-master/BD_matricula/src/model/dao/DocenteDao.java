@@ -10,4 +10,5 @@ public interface DocenteDao {
     void deleteById(int id) throws SQLException;
     Docente findById(int id) throws SQLException;
     List<Docente> findAll() throws SQLException;
+    List<Docente> findBySubstring(String sub) throws SQLException;
 }

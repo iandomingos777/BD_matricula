@@ -84,6 +84,19 @@ public class CampusDaoJDBC implements CampusDao {
         return list;
     }
 
+    @Override
+    public List<Campus> findBySubstring(String sub) throws SQLException {
+        List<Campus> list = new ArrayList<>();
+        String sql = "SELECT * FROM campus WHERE nome ILIKE '%"+ sub +"%' ORDER BY nome";
+        try (PreparedStatement st = conn.prepareStatement(sql);
+             ResultSet rs = st.executeQuery()) {
+            while (rs.next()) {
+                list.add(instantiateCampus(rs));
+            }
+        }
+        return list;
+    }
+
     private Campus instantiateCampus(ResultSet rs) throws SQLException {
         Campus campus = new Campus();
         campus.setId(rs.getInt("id"));

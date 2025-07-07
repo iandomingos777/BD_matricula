@@ -10,4 +10,5 @@ public interface AlunoDao {
     void deleteById(int matricula) throws SQLException;
     Aluno findById(int matricula) throws SQLException;
     List<Aluno> findAll() throws SQLException;
+    List<Aluno> findBySubstring(String sub) throws SQLException;
 }

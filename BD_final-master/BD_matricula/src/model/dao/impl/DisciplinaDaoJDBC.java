@@ -96,6 +96,21 @@ public class DisciplinaDaoJDBC implements DisciplinaDao {
         }
     }
 
+    @Override
+    public List<Disciplina> findBySubstring(String sub) throws SQLException {
+        String sql = "SELECT * FROM disciplina WHERE nome ILIKE '%"+ sub +"%' ORDER BY nome";
+
+        try (PreparedStatement st = conn.prepareStatement(sql);
+             ResultSet rs = st.executeQuery()) {
+
+            List<Disciplina> list = new ArrayList<>();
+            while (rs.next()) {
+                list.add(instantiateDisciplina(rs));
+            }
+            return list;
+        }
+    }
+
     private Disciplina instantiateDisciplina(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String nome = rs.getString("nome");
