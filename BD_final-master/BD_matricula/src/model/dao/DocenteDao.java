@@ -6,6 +6,7 @@ import model.entities.Docente;
 
 public interface DocenteDao {
     void insert(Docente obj) throws SQLException;
+    void massInsert(List<Docente> docentes) throws SQLException;
     void update(Docente obj) throws SQLException;
     void deleteById(int id) throws SQLException;
     Docente findById(int id) throws SQLException;
