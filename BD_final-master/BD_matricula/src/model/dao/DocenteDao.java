@@ -12,4 +12,5 @@ public interface DocenteDao {
     Docente findById(int id) throws SQLException;
     List<Docente> findAll() throws SQLException;
     List<Docente> findBySubstring(String sub) throws SQLException;
+    List<Docente> listarANYMenorCarga() throws SQLException;
 }

@@ -12,4 +12,5 @@ public interface CursoDao {
     Curso findById(int id) throws Exception;
     List<Curso> findAll() throws Exception;
     List<Curso> findBySubstring(String sub) throws SQLException;
+    List<Curso> listarCursosComMenosDisciplinas() throws SQLException;
 }
