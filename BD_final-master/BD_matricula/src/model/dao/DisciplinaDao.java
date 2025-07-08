@@ -2,6 +2,8 @@ package model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import model.entities.Aluno;
 import model.entities.Disciplina;
 
 public interface DisciplinaDao {

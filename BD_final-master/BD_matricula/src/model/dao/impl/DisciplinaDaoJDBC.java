@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.dao.DisciplinaDao;
+import model.entities.Aluno;
 import model.entities.Disciplina;
 
 public class DisciplinaDaoJDBC implements DisciplinaDao {
@@ -146,4 +147,5 @@ public class DisciplinaDaoJDBC implements DisciplinaDao {
         }
 
     }
+
 }

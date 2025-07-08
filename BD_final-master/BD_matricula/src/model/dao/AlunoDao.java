@@ -14,4 +14,6 @@ public interface AlunoDao {
     List<Aluno> findBySubstring(String sub) throws SQLException;
 
     int somarHorasTotais(int mat) throws SQLException;
+    List<Aluno> listarAlunosDestaque() throws SQLException;
+    List<Aluno> ordernarAlunosPorMedia(boolean crescente) throws SQLException;
 }

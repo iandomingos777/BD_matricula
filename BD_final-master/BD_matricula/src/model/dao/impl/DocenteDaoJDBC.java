@@ -22,7 +22,7 @@ public class DocenteDaoJDBC implements DocenteDao {
         try (PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, obj.getNome());
             st.setString(2, obj.getFormacao());
-            st.setInt(3, obj.getTelefone());
+            st.setString(3, obj.getTelefone());
             st.setString(4, obj.getArea());
             st.setString(5, obj.getLattes());
 
@@ -54,7 +54,7 @@ public class DocenteDaoJDBC implements DocenteDao {
         try (PreparedStatement st = conn.prepareStatement(sql)) {
             st.setString(1, obj.getNome());
             st.setString(2, obj.getFormacao());
-            st.setInt(3, obj.getTelefone());
+            st.setString(3, obj.getTelefone());
             st.setString(4, obj.getArea());
             st.setString(5, obj.getLattes());
             st.setInt(6, obj.getId());
@@ -123,7 +123,7 @@ public class DocenteDaoJDBC implements DocenteDao {
         int id = rs.getInt("id");
         String nome = rs.getString("nome");
         String formacao = rs.getString("formacao");
-        int telefone = rs.getInt("telefone");
+        String telefone = rs.getString("telefone");
         String area = rs.getString("area");
         String lattes = rs.getString("lattes");
 

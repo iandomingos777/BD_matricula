@@ -7,14 +7,14 @@ public class Docente implements Serializable {
     private int id;
     private String nome;
     private String formacao;
-    private int telefone;
+    private String telefone;
     private String area;
     private String lattes;
 
     public Docente() {
     }
 
-    public Docente(int id, String nome, String formacao, int telefone, String area, String lattes) {
+    public Docente(int id, String nome, String formacao, String telefone, String area, String lattes) {
         this.id = id;
         this.nome = nome;
         this.formacao = formacao;
@@ -39,7 +39,7 @@ public class Docente implements Serializable {
         return formacao;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -59,7 +59,7 @@ public class Docente implements Serializable {
         this.formacao = formacao;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

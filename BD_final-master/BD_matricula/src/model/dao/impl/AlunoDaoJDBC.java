@@ -153,4 +153,46 @@ public class AlunoDaoJDBC implements AlunoDao {
             }
         }
     }
+
+	@Override
+	public List<Aluno> listarAlunosDestaque() throws SQLException {
+		String sql = "SELECT a.matricula, a.nome, a.idade, a.semestre, " +
+		        "a.n_disciplinas, a.sem_inicial, a.prev_termino " +
+		        "FROM Aluno a " +
+		        "JOIN Cadeira_aluno ca ON a.matricula = ca.mat_aluno " +
+		        "GROUP BY a.matricula, a.nome, a.idade, a.semestre, a.n_disciplinas, a.sem_inicial, a.prev_termino " +
+		        "HAVING AVG((ca.nota1 + ca.nota2 + ca.nota3 + ca.nota4) / 4.0) >= 9";
+		try (PreparedStatement st = conn.prepareStatement(sql);
+                ResultSet rs = st.executeQuery()) {
+
+               List<Aluno> list = new ArrayList<>();
+               while (rs.next()) {
+                   list.add(instantiateAluno(rs));
+               }
+               return list;
+           }
+	}
+
+	@Override
+	public List<Aluno> ordernarAlunosPorMedia(boolean crescente) throws SQLException {
+	    String ordem = "DESC";
+	    if(crescente)
+	    	ordem = "ASC";
+	    String sql = "SELECT a.matricula, a.nome, a.idade, a.semestre, " +
+	                 "a.n_disciplinas, a.sem_inicial, a.prev_termino " +
+	                 "FROM Aluno a " +
+	                 "JOIN Cadeira_aluno ca ON a.matricula = ca.mat_aluno " +
+	                 "GROUP BY a.matricula, a.nome, a.idade, a.semestre, a.n_disciplinas, a.sem_inicial, a.prev_termino " +
+	                 "ORDER BY AVG((ca.nota1 + ca.nota2 + ca.nota3 + ca.nota4) / 4.0) " + ordem;
+
+	    try (PreparedStatement st = conn.prepareStatement(sql);
+	         ResultSet rs = st.executeQuery()) {
+
+	        List<Aluno> list = new ArrayList<>();
+	        while (rs.next()) {
+	            list.add(instantiateAluno(rs));
+	        }
+	        return list;
+	    }
+	}
 }
