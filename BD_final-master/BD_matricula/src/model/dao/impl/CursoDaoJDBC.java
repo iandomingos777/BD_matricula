@@ -23,8 +23,8 @@ public class CursoDaoJDBC implements CursoDao {
         try (PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, obj.getNome());
             st.setString(2, obj.getCentro());
-            st.setInt(3, obj.getN_disciplinas());
-            st.setInt(4, obj.getN_alunos());
+            st.setInt(3, 0);
+            st.setInt(4, 0);
             st.setBoolean(5, obj.isEad());
             st.setInt(6, obj.getId_campus());
             st.setInt(7, obj.getId_coordenador());
@@ -58,8 +58,8 @@ public class CursoDaoJDBC implements CursoDao {
         try (PreparedStatement st = conn.prepareStatement(sql)) {
             st.setString(1, obj.getNome());
             st.setString(2, obj.getCentro());
-            st.setInt(3, 0);
-            st.setInt(4, 0);
+            st.setInt(3, obj.getN_disciplinas());
+            st.setInt(4, obj.getN_alunos());
             st.setInt(3, obj.getN_disciplinas());
             st.setInt(4, obj.getN_alunos());
             st.setBoolean(5, obj.isEad());
